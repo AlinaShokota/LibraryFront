@@ -1,0 +1,53 @@
+.intro-2 {
+    /* background: url("https://mdbootstrap.com/img/Photos/Others/img%20(42).jpg")no-repeat center center; */
+    background-size: cover;
+    /*background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);*/
+    background: linear-gradient(0deg, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
+.view {
+    height: 100vh !important;
+}
+
+.container {
+    margin-top: 9%;
+    background-color: rgba(255, 255, 255, 0.322);
+    height: 100% !important;
+}
+  
+  .header {
+    padding: 5px;
+    padding-top: 2%;
+  }
+  
+  .filter {
+    display: block;
+  }
+
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  th, td {
+    border: 1px #dddddd;
+    text-align: left;
+    height: 60px;
+    overflow: hidden;
+    width: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+//   .mat-column-title {
+//     width: auto;
+// }
+
+.mat-column-modify,
+.mat-column-details,
+.mat-column-delete{
+    width: 7%;
+}
+
+
+

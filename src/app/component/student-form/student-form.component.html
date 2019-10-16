@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+
+<section class="view intro-2">
+    <div class="container">
+
+            <form [formGroup]="form" (submit)="submit()">
+                    <div class="card">
+                        <div class="card-header">Add new student</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label>First name</label>
+                                    <input class="form-control" formControlName="firstName" type="text">
+                                    <span class="text-danger" *ngIf="form.controls['firstName'].touched && form.controls['firstName'].hasError('required')">
+                                            First name is required! </span>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Last name</label>
+                                    <input class="form-control" formControlName="lastName" type="text">
+                                    <span class="text-danger" *ngIf="form.controls['lastName'].touched && form.controls['lastName'].hasError('required')">
+                                        Last name is required! </span>
+                                </div>
+                                <!-- <div class="form-group col-6">
+                                        <label>Group name</label>
+                                        <input class="form-control" formControlName="groupName" type="text">
+                                        <span class="text-danger" *ngIf="form.controls['groupName'].touched && form.controls['groupName'].hasError('required')">
+                                            Group name is required! </span>
+                                    </div> -->
+
+                                    <div class="form-group col-6">
+                                            <label>Group name</label>
+                                            <select class="form-control" formControlName="groupName">
+                                                    <option>ER-11</option>
+                                                    <option>ER-21</option>
+                                                    <option>ER-31</option>
+                                                    <option>EM-11</option>
+                                                    <option>EM-12</option>
+                                                    <option>EM-21</option>
+                                                    <option>EM-31</option>
+                                                  </select>
+                                        </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-body">
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit"> Save student </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+    </div>
+
+</section>

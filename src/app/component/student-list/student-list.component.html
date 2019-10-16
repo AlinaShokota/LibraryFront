@@ -1,0 +1,80 @@
+<app-navbar></app-navbar>
+
+<section class="view intro-2">
+    <div class="container">
+    
+        <div class="header text-center">
+            <h4>Students</h4>
+            <a class="btn btn-primary" href="/student-form" role="button">Add student</a>
+        </div>
+        <table mat-table [dataSource]="dataSource" class="table table-striped">
+            <ng-container matColumnDef="firstName">
+                <th class="header" mat-header-cell *matHeaderCellDef>
+                    First name
+                    <mat-form-field class="filter" floatLabel="never">
+                        <mat-label style="color: grey; font-weight: 200;">Search</mat-label>
+                        <input matInput [formControl]="firstNameFilter">
+                    </mat-form-field>
+                </th>
+                <td mat-cell *matCellDef="let student">{{student.firstName}}</td>
+            </ng-container>
+            <ng-container matColumnDef="lastName">
+                <th class="header" mat-header-cell *matHeaderCellDef>
+                    Last name
+                    <mat-form-field class="filter" floatLabel="never">
+                        <mat-label style="color: grey; font-weight: 200;">Search</mat-label>
+                        <input matInput [formControl]="lastNameFilter">
+                    </mat-form-field>
+                </th>
+                <td mat-cell *matCellDef="let student">{{student.lastName}}</td>
+            </ng-container>
+            <ng-container matColumnDef="groupName">
+                <th class="header" mat-header-cell *matHeaderCellDef>
+                    Group
+                    <mat-form-field class="filter" floatLabel="never">
+                        <mat-label style="color: grey; font-weight: 200;">Search</mat-label>
+                        <input matInput [formControl]="groupFilter">
+                    </mat-form-field>
+                </th>
+                <td mat-cell *matCellDef="let student">{{student.groupName}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="details">
+                <th class="header" mat-header-cell *matHeaderCellDef>
+                    Details
+                </th>
+                <td mat-cell *matCellDef="let student">
+                    <button class="btn" (click)="get(student.id)"><i class="fa fa-bars indigo-text"></i></button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="modify">
+                <th class="header" mat-header-cell *matHeaderCellDef>
+                    Modify
+                </th>
+                <td mat-cell *matCellDef="let student">
+                    <button class="btn" (click)="modify(student.id)">
+                        <mdb-icon fas icon="pen-alt" class="pink-text"></mdb-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+                <th class="header" mat-header-cell *matHeaderCellDef>
+                    Delete
+                </th>
+                <td mat-cell *matCellDef="let student">
+                    <button class="btn" (click)="delete(student.id)">
+                        <mdb-icon far icon="trash-alt"></mdb-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let person; columns: columnsToDisplay"></tr>
+        </table>
+
+    </div>
+
+</section>
