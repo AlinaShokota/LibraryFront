@@ -20,18 +20,6 @@ export class StudentFormComponent implements OnInit {
   student: Student;
 
   ngOnInit() {
-    
-
-    const idParam = this.route.snapshot.paramMap.get('id');
-    const id: number = parseInt(idParam, 10);
-    if (id) {
-      this.studentService.get(id).subscribe(value => {
-        console.log(value);
-        this.student = value;
-        this.student.id = id;
-      });
-    }
-
     this.form = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],

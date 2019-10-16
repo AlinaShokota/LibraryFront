@@ -14,7 +14,7 @@ export class StudentListComponent implements OnInit {
   lastNameFilter = new FormControl('');
   groupFilter = new FormControl('');
   dataSource = new MatTableDataSource();
-  columnsToDisplay = ['firstName', 'lastName', 'groupName', 'details', 'modify', 'delete'];
+  columnsToDisplay = ['firstName', 'lastName', 'groupName', 'details','delete'];
   filterValues = {
     firstName: '',
     lastName: '',
@@ -70,7 +70,6 @@ export class StudentListComponent implements OnInit {
     });
   }
 
-
   delete(id: number) {
     this.studentService.delete(id).subscribe(v => {
       this.getAllStudents();
@@ -80,10 +79,5 @@ export class StudentListComponent implements OnInit {
   get(id: number) {
     window.location.href = '/student/' + id;
   }
-
-  modify(id: number){
-    window.location.href = '/student-form/' + id;
-  }
-
 
 }
