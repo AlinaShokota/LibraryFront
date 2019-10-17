@@ -14,3 +14,35 @@
     background-color: rgba(255, 255, 255, 0.322);
     height: 100% !important;
 }
+
+.header {
+    padding-top: 5%;
+}
+.header2 {
+    padding-top: 3%;
+}
+
+.filter {
+    display: block;
+  }
+
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  th, td {
+    border: 1px #dddddd;
+    text-align: left;
+    height: 60px;
+    overflow: hidden;
+    width: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+
+.mat-column-details{
+    width: 10%;
+}

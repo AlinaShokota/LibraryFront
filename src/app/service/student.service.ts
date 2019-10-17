@@ -25,4 +25,8 @@ export class StudentService {
   delete(id: number): Observable<Student> {
     return this.http.delete<Student>('http://localhost:8080/students/delete/'+id);
   }
+
+  update(student: Student):  Observable<Object> {
+    return this.http.put('http://localhost:8080/students/update', student);
+  }
 }

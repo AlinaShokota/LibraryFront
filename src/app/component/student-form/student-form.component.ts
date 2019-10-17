@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StudentService } from 'src/app/service/student.service';
 import { Student } from 'src/app/model/student';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-student-form',
@@ -15,7 +14,7 @@ export class StudentFormComponent implements OnInit {
   submitted = false;
   public isCollapsed = false;
 
-  constructor(private studentService: StudentService, private fb: FormBuilder, private route: ActivatedRoute) { }
+  constructor(private studentService: StudentService, private fb: FormBuilder) { }
 
   student: Student;
 

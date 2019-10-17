@@ -12,4 +12,8 @@ export class BookService {
   getAllBooks(): Observable<Book[]> {
     return this.http.get<Book[]>('http://localhost:8080/books/all');
   }
+
+  get(id: number): Observable<Book> {
+    return this.http.get<Book>('http://localhost:8080/books/get/'+id);
+  }
 }
