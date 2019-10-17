@@ -28,6 +28,8 @@ export class StudentComponent implements OnInit {
     publisher: ''
   };
 
+  
+
   constructor(private route: ActivatedRoute, private studentService:StudentService, private bookService: BookService) {
    }
 
@@ -50,6 +52,16 @@ export class StudentComponent implements OnInit {
     }
     this.bookService.getAllBooks().subscribe(value => {
       this.allBooks = value;
+
+      for (var i = 0; i < this.books.length; i++) {
+        var id = this.books[i].id;
+        this.newBook = this.books.find(i => i.id === id);
+        if (this.allBooks.find(i => i.id === id)!==null) {
+            console.log('Includes'+this.books[i].title);
+            console.log(this.allBooks.indexOf(this.allBooks.find(i => i.id === id)));
+            this.allBooks.splice(this.allBooks.indexOf(this.allBooks.find(i => i.id === id)), 1)
+        }
+    }
       this.dataSource.data = this.allBooks;
       this.dataSource.filterPredicate = this.createFilter();
     });
