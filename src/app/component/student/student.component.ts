@@ -28,8 +28,6 @@ export class StudentComponent implements OnInit {
     publisher: ''
   };
 
-  
-
   constructor(private route: ActivatedRoute, private studentService:StudentService, private bookService: BookService) {
    }
 
@@ -37,7 +35,7 @@ export class StudentComponent implements OnInit {
   books: Book[] = new Array();
   book: Book = new Book();
   allBooks: Book[] = new Array();
-  allBooksCopy: Book[] = new Array();
+  temporaryBookList: Book[] = new Array();
   newBook: Book = new Book();;
 
   ngOnInit() {
@@ -51,7 +49,8 @@ export class StudentComponent implements OnInit {
       });
     }
     this.bookService.getAllBooks().subscribe(value => {
-      this.allBooks = value;
+      this.allBooks = value; 
+      this.temporaryBookList = this.books;
 
       for (var i = 0; i < this.books.length; i++) {
         var id = this.books[i].id;
@@ -65,6 +64,12 @@ export class StudentComponent implements OnInit {
       this.dataSource.data = this.allBooks;
       this.dataSource.filterPredicate = this.createFilter();
     });
+
+    this.setFilters();
+
+  }
+
+  setFilters(){
     this.titleFilter.valueChanges
       .subscribe(
         title => {
@@ -106,6 +111,7 @@ export class StudentComponent implements OnInit {
     this.book = this.books.find(i => i.id === id);
     console.log(this.books.indexOf(this.book));
     this.books.splice(this.books.indexOf(this.book), 1);
+    this.saveChangesAfterReturn();
   }
 
   createFilter(): (data: any, filter: string) => boolean {
@@ -132,15 +138,26 @@ export class StudentComponent implements OnInit {
   // }
 
   addBook(id: number){
+    console.log('INDEX: '+this.allBooks.indexOf(this.allBooks.find(i => i.id === id)));
+    this.allBooks.splice(this.allBooks.indexOf(this.allBooks.find(i => i.id === id)), 1)
     this.bookService.get(id).subscribe(value => {
       this.book = value;
       this.books.push(this.book);
-      console.log('ADD BOOK: '+this.books);
+      console.log('ADD BOOK: '+this.book.title);
+      this.saveChanges();
     })
   }
 
   saveChanges(){
-    if (confirm("Do you want to save changes?")) {
+    if (confirm("Do you want to lend a book to student?")) {
+      this.student.books = this.books;
+      this.studentService.update(this.student).subscribe(value => {
+        this.ngOnInit();
+      })
+    }
+  }
+  saveChangesAfterReturn(){
+    if (confirm("Did the student return this book?")) {
       this.student.books = this.books;
       this.studentService.update(this.student).subscribe(value => {
         this.ngOnInit();
