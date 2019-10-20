@@ -10,22 +10,22 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
   getAllBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>('http://localhost:8080/books/all');
+    return this.http.get<Book[]>('https://my-lib-backend.herokuapp.com/books/all');
   }
 
   getAllAvailableBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>('http://localhost:8080/books/available');
+    return this.http.get<Book[]>('https://my-lib-backend.herokuapp.com/books/available');
   }
 
   get(id: number): Observable<Book> {
-    return this.http.get<Book>('http://localhost:8080/books/get/'+id);
+    return this.http.get<Book>('https://my-lib-backend.herokuapp.com/books/get/'+id);
   }
 
   save(book: Book): Observable<Object> {
-    return this.http.post('http://localhost:8080/books/save', book);
+    return this.http.post('https://my-lib-backend.herokuapp.com/books/save', book);
   }
 
   delete(id: number): Observable<Book> {
-    return this.http.delete<Book>('http://localhost:8080/books/delete/'+id);
+    return this.http.delete<Book>('https://my-lib-backend.herokuapp.com/books/delete/'+id);
   }
 }
