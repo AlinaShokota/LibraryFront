@@ -16,7 +16,7 @@ export class BookListComponent implements OnInit {
   yearFilter = new FormControl('');
   publisherFilter = new FormControl('');
   dataSource = new MatTableDataSource();
-  columnsToDisplay = ['title', 'author', 'genre', 'year', 'publisher', 'details', 'modify', 'delete'];
+  columnsToDisplay = ['title', 'author', 'genre', 'year', 'publisher', 'details', 'delete'];
   filterValues = {
     title: '',
     author: '',
@@ -29,11 +29,12 @@ export class BookListComponent implements OnInit {
 
   books: Book[] = new Array();
   ngOnInit() {
-    this.bookService.getAllBooks().subscribe(value => {
-      this.books = value;
-      this.dataSource.data = this.books;
-      this.dataSource.filterPredicate = this.createFilter();
-    });
+    this.getAllBooks();
+    this.setFilterValueChanges();
+
+  }
+
+  setFilterValueChanges() {
     this.titleFilter.valueChanges
       .subscribe(
         title => {
@@ -76,11 +77,29 @@ export class BookListComponent implements OnInit {
       let searchTerms = JSON.parse(filter);
       return (data.title.toLowerCase().indexOf(searchTerms.title) !== -1 || data.title.indexOf(searchTerms.title) !== -1)
         && (data.author.toLowerCase().indexOf(searchTerms.author) !== -1 || data.author.indexOf(searchTerms.author) !== -1)
-        // && (data.genre.toLowerCase().indexOf(searchTerms.genre) !== -1 || data.genre.indexOf(searchTerms.genre) !== -1)
+        && (data.genre.toLowerCase().indexOf(searchTerms.genre) !== -1 || data.genre.indexOf(searchTerms.genre) !== -1)
         && (data.year.toString().toLowerCase().indexOf(searchTerms.year) !== -1 || data.year.toString().indexOf(searchTerms.year) !== -1)
         && (data.publisher.toLowerCase().indexOf(searchTerms.publisher) !== -1 || data.publisher.indexOf(searchTerms.publisher) !== -1);
     }
     return filterFunction;
+  }
+
+  getAllBooks() {
+    this.bookService.getAllBooks().subscribe(value => {
+      this.books = value;
+      this.dataSource.data = this.books;
+      this.dataSource.filterPredicate = this.createFilter();
+    });
+  }
+
+  delete(id: number) {
+    this.bookService.delete(id).subscribe(v => {
+      this.getAllBooks();
+    })
+  }
+
+  get(id: number) {
+    window.location.href = '/book/' + id;
   }
 
 }

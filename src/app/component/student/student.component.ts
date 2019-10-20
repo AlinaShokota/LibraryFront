@@ -35,7 +35,6 @@ export class StudentComponent implements OnInit {
   books: Book[] = new Array();
   book: Book = new Book();
   allBooks: Book[] = new Array();
-  temporaryBookList: Book[] = new Array();
   newBook: Book = new Book();;
 
   ngOnInit() {
@@ -45,12 +44,12 @@ export class StudentComponent implements OnInit {
       this.studentService.get(id).subscribe(value => {
         this.student = value;
         this.books = this.student.books;
-        console.log('ON INIT: '+this.books);
+        console.log('student books: '+this.books);
       });
     }
     this.bookService.getAllBooks().subscribe(value => {
       this.allBooks = value; 
-      this.temporaryBookList = this.books;
+      console.log('all books: '+this.allBooks);
 
       for (var i = 0; i < this.books.length; i++) {
         var id = this.books[i].id;
@@ -126,17 +125,6 @@ export class StudentComponent implements OnInit {
     return filterFunction;
   }
 
-  // addBook(id: number){
-  //   this.newBook = this.allBooksCopy.find(i => i.id === id);
-  //   this.books.push(this.newBook);
-  //   console.log(this.allBooksCopy.indexOf(this.newBook));
-  //   //this.allBooksCopy.splice(this.allBooksCopy.indexOf(this.newBook), 1);
-  //   this.student.books = this.books;
-  //   this.studentService.update(this.student).subscribe(value => {
-  //     console.log('updated');
-  //   })
-  // }
-
   addBook(id: number){
     console.log('INDEX: '+this.allBooks.indexOf(this.allBooks.find(i => i.id === id)));
     this.allBooks.splice(this.allBooks.indexOf(this.allBooks.find(i => i.id === id)), 1)
@@ -156,6 +144,7 @@ export class StudentComponent implements OnInit {
       })
     }
   }
+
   saveChangesAfterReturn(){
     if (confirm("Did the student return this book?")) {
       this.student.books = this.books;
