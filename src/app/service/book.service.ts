@@ -13,6 +13,10 @@ export class BookService {
     return this.http.get<Book[]>('http://localhost:8080/books/all');
   }
 
+  getAllAvailableBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>('http://localhost:8080/books/available');
+  }
+
   get(id: number): Observable<Book> {
     return this.http.get<Book>('http://localhost:8080/books/get/'+id);
   }
