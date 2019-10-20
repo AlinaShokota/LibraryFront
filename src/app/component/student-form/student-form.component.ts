@@ -35,7 +35,6 @@ export class StudentFormComponent implements OnInit {
     this.studentService.save(this.student).subscribe(value => {
       window.location.href = '/student-list';
     });
-
   }
 
 }

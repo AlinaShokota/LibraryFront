@@ -16,6 +16,7 @@ import { BookListComponent } from './component/book-list/book-list.component';
 import { MaterialModule } from './material-module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentFormComponent } from './component/student-form/student-form.component';
+import { BookFormComponent } from './component/book-form/book-form.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { StudentFormComponent } from './component/student-form/student-form.comp
     BookComponent,
     StudentListComponent,
     BookListComponent,
-    StudentFormComponent
+    StudentFormComponent,
+    BookFormComponent
   ],
   imports: [
     BrowserModule,

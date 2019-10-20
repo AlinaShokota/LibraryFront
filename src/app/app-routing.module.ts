@@ -6,6 +6,7 @@ import { BookComponent } from './component/book/book.component';
 import { StudentListComponent } from './component/student-list/student-list.component';
 import { BookListComponent } from './component/book-list/book-list.component';
 import { StudentFormComponent } from './component/student-form/student-form.component';
+import { BookFormComponent } from './component/book-form/book-form.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'student-list', component: StudentListComponent },
   { path: 'book-list', component: BookListComponent },
   { path: 'student-form/:id', component: StudentFormComponent },
-  { path: 'student-form', component: StudentFormComponent }
+  { path: 'student-form', component: StudentFormComponent },
+  { path: 'book-form', component: BookFormComponent }
 ];
 
 @NgModule({
